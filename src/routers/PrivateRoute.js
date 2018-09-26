@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router'
 import { connect } from 'react-redux'
-import * as reducers from '../reducers'
+import * as reducers from '../reducers/index'
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
   <Route {...rest} render={props => (
     isAuthenticated ? (
@@ -13,8 +13,8 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
       }}/>
     )
   )}/>
-)
+);
 const mapStateToProps = (state) => ({
   isAuthenticated: reducers.isAuthenticated(state)
-})
-export default connect(mapStateToProps, null)(PrivateRoute);
+});
+export default connect(mapStateToProps)(PrivateRoute);

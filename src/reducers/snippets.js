@@ -25,7 +25,7 @@ export default (state = snippetsReducerDefaultState, action = {}) => {
       };
     case 'SUCCESS_ADD_SNIPPET':
       return {...state,
-        snippets: [...state.snippets, action.payload.snippet],
+        snippets: [...state.snippets, action.payload],
         isLoading: false
       };
     case 'SUCCESS_GET_OPTIONS':
@@ -46,14 +46,15 @@ export default (state = snippetsReducerDefaultState, action = {}) => {
           })
         }
       };
-    case 'ADD_SNIPPET':
-      return [
-        ...state,
-        action.snippet
-      ];
+
 
     case 'SUCCESS_DELETE_SNIPPET':
-      return state.snippets.filter(({id}) => id !== action.payload.id);
+      const snippets = state.snippets.filter(({id}) => id !== action.payload.id);
+
+      return {
+        snippets,
+        isLoading: false,
+      };
 
     case 'SUCCESS_EDIT_SNIPPET':
       return {
@@ -68,8 +69,6 @@ export default (state = snippetsReducerDefaultState, action = {}) => {
         }),
         isLoading: false
       };
-    case 'SET_SNIPPETS':
-      return action.snippets;
     default:
       return state;
   }

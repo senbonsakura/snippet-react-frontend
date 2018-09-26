@@ -2,21 +2,27 @@ import { RSAA } from 'redux-api-middleware';
 import { withAuth } from '../reducers';
 
 export const startAddSnippet = (snippet) => {
+  let body = new FormData();
 
-    return {
+  Object.keys(snippet).forEach(key => body.append(key, snippet[key]));
+
+
+  // {
+  //   type: 'SUCCESS_ADD_SNIPPET',
+  //     payload: () => {
+  //   return {snippet}
+  // }
+  // },
+
+  return {
       [RSAA]: {
         endpoint: '/snippets/',
         method: 'POST',
-        body: JSON.stringify(snippet),
-        headers: withAuth({'Content-Type': 'application/json'}),
+        body,
+        headers: withAuth(),
         types: [
           'REQUEST_ADD_SNIPPET',
-          {
-            type: 'SUCCESS_ADD_SNIPPET',
-            payload: () => {
-              return {snippet}
-            }
-          },
+          'SUCCESS_ADD_SNIPPET',
           'FAILURE_ADD_SNIPPET'
         ]
       }
@@ -63,13 +69,16 @@ export const startDeleteSnippets = (snippet) => {
 };
 
 export const startEditSnippets = (id, updates) => {
-  const body = JSON.stringify(updates);
+  let body = new FormData();
+
+  Object.keys(updates).forEach(key => body.append(key, updates[key]));
+
   return {
     [RSAA]: {
       endpoint: `/snippets/${id}/`,
       method: 'PUT',
       body,
-      headers: withAuth({'Content-Type': 'application/json'}),
+      headers: withAuth(),
       types: [
         'REQUEST_EDIT_SNIPPET',
         {
@@ -80,7 +89,7 @@ export const startEditSnippets = (id, updates) => {
             };
           }
         },
-        'FAILURE_DELETE_SNIPPET'
+        'FAILURE_EDIT_SNIPPET'
       ]
 
     }

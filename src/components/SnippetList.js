@@ -6,14 +6,14 @@ import SnippetItem from './SnippetItem'
 class SnippetList extends Component {
 
   componentDidMount() {
-    this.props.setSnippets()
+    //this.props.setSnippets()
   }
 
   render () {
     if (this.props.snippets === undefined || this.props.isLoading) {return <p>Loading...</p>}
     return (
-      <div className="container-fluid">
-      <Link to="/add" className="btn btn-primary">Add New Snippet</Link>
+      <div className="container">
+      <Link to="/add" className="btn btn-primary mb-md-2">Add New Snippet</Link>
      <div className="list-group ">
 
 
@@ -25,7 +25,6 @@ class SnippetList extends Component {
 
       </div>
     </div>
-
     )}
 }
 

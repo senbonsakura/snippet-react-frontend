@@ -2,10 +2,10 @@ import React from 'react';
 import Select from 'react-select';
 
 const SelectField = ({
-                              options,
-                              field,
-                              form
-                            }) => (
+                       options,
+                       field,
+                       form
+                     }) => (
   <Select
     options={options}
     name={field.name}
@@ -14,4 +14,4 @@ const SelectField = ({
     onBlur={field.onBlur}
   />
 );
-export default SelectField
+export default SelectField;

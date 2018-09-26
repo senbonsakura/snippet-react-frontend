@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import {startAddSnippet} from '../actions/snippet'
 class AddSnippetPage extends Component {
   onSubmit = (snippet) => {
-    this.props.startAddSnippet(snippet)
+    this.props.startAddSnippet(snippet);
     this.props.history.push('/')
-  }
+  };
   render () {
     return (
-      <div className="container-fluid">
+      <div className="container">
       <h3>New Snippet</h3>
         <SnippetForm
           onSubmit={this.onSubmit}
@@ -21,6 +21,6 @@ class AddSnippetPage extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   startAddSnippet: (snippet) => dispatch(startAddSnippet(snippet))
-})
+});
 
 export default connect(undefined, mapDispatchToProps)(AddSnippetPage);
